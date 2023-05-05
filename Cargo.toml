@@ -1,8 +1,8 @@
 [package]
-name = "mdns"
-version = "3.0.0"
-authors = ["Dylan McKay <me@dylanmckay.io>"]
-edition = "2018"
+name = "viam-mdns"
+version = "3.0.1"
+authors = ["Dylan McKay <me@dylanmckay.io>", "Ethan Rodkin <ethanrodkin@viam.com"]
+edition = "2021"
 
 description = """
 A multicast DNS client library.
@@ -11,8 +11,8 @@ Supports discovery of any mDNS device on a LAN.
 """
 
 license = "MIT"
-documentation = "https://docs.rs/mdns"
-repository = "https://github.com/dylanmckay/mdns"
+documentation = "https://docs.rs/viam-mdns"
+repository = "https://github.com/stuqdog/mdns"
 
 categories = ["network-programming"]
 keywords = ["mdns", "dns", "multicast", "chromecast", "discovery"]
