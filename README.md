@@ -1,7 +1,7 @@
 # mdns
 
 [![Build Status](https://travis-ci.org/stuqdog/mdns.svg?branch=master)](https://travis-ci.org/stuqdog/mdns)
-[![crates.io](https://img.shields.io/crates/v/mdns.svg)](https://crates.io/crates/viam-mdns)
+[![crates.io](https://img.shields.io/crates/v/viam-mdns.svg)](https://crates.io/crates/viam-mdns)
 [![MIT license](https://img.shields.io/github/license/mashape/apistatus.svg)]()
 
 [Documentation](https://docs.rs/viam-mdns)
