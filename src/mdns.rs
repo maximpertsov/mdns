@@ -20,15 +20,23 @@ fn mdns_interface_inner(
     interface_addr: Ipv4Addr,
     with_loopback: bool,
 ) -> Result<(mDNSListener, mDNSSender), Error> {
+    println!("CREATING SOCKET");
     let socket = create_socket()?;
 
+    println!("SETTING MULTICAST LOOP V4, with loopback={}", with_loopback);
     socket.set_multicast_loop_v4(with_loopback)?;
-    socket.join_multicast_v4(&MULTICAST_ADDR, &interface_addr)?;
+    let use_interface_addr = if with_loopback { Ipv4Addr::LOCALHOST } else { interface_addr };
+    println!("JOINING MULTICAST V4, with multicast multicast_addr={}, interface_addr={}", MULTICAST_ADDR, use_interface_addr);
+    // socket.join_multicast_v4(&MULTICAST_ADDR, &interface_addr)?;
+    socket.join_multicast_v4(&MULTICAST_ADDR, &use_interface_addr)?;
 
+    println!("CREATING SOCKET WITH REFERENCE COUNTER");
     let socket = Arc::new(UdpSocket::from(socket));
 
+    println!("CREATING BUFFER");
     let recv_buffer = vec![0; 4096];
 
+    println!("RETURN MDNS LISTENER AND SENDER");
     Ok((
         mDNSListener {
             recv: socket.clone(),
