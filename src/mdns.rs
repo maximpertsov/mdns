@@ -63,21 +63,19 @@ pub fn mdns_interface_with_loopback(
     mdns_interface_inner(service_name, interface_addr, true)
 }
 
-const ADDR_ANY: Ipv4Addr = Ipv4Addr::new(0, 0, 0, 0);
-
 #[cfg(not(target_os = "windows"))]
 fn create_socket() -> io::Result<std::net::UdpSocket> {
     net2::UdpBuilder::new_v4()?
         .reuse_address(true)?
         .reuse_port(true)?
-        .bind((ADDR_ANY, MULTICAST_PORT))
+        .bind((Ipv4Addr::UNSPECIFIED, MULTICAST_PORT))
 }
 
 #[cfg(target_os = "windows")]
 fn create_socket() -> io::Result<std::net::UdpSocket> {
     net2::UdpBuilder::new_v4()?
         .reuse_address(true)?
-        .bind((ADDR_ANY, MULTICAST_PORT))
+        .bind((Ipv4Addr::UNSPECIFIED, MULTICAST_PORT))
 }
 
 /// An mDNS sender on a specific interface.
